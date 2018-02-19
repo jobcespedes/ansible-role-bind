@@ -12,6 +12,7 @@
     setype: named_conf_t
     validate: 'named-checkconf %s'
   notify: restart bind
+  when: master_etc_named is not defined
   tags: bind
 
 - name: Master | Create forward lookup zone file
@@ -51,4 +52,3 @@
   with_items: "{{ bind_zone_ipv6_networks }}"
   #notify: restart bind
   tags: bind
-    
